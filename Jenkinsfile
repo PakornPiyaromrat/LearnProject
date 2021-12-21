@@ -20,15 +20,15 @@ pipeline {
 	stages {
 		
 		stage('build') {
-                        when {
-                                expression {
-                                        BRANCH_NAME == 'dev' && CODE_CHANGES == true
-                                }
-                        }
+//                         when {
+//                                 expression {
+//                                         BRANCH_NAME == 'dev' && CODE_CHANGES == true
+//                                 }
+//                         }
 			steps {
 				echo 'building the application...'
 				echo 'built the application...'
-                echo "building version ${NEW_VERSION}"
+//                 echo "building version ${NEW_VERSION}"
                 echo 'mvn install'
 			}
 		}
