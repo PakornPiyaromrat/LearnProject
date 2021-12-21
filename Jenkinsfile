@@ -1,4 +1,4 @@
-CODE_CHANGES = getGitChanges()
+// CODE_CHANGES = getGitChanges()
 pipeline {
 	
 	agent any
@@ -20,23 +20,15 @@ pipeline {
 	stages {
 		
 		stage('build') {
-//                         when {
-//                                 expression {
-//                                         BRANCH_NAME == 'dev' && CODE_CHANGES == true
-//                                 }
-//                         }
 			steps {
 				echo 'building the application...'
 				echo 'built the application...'
-//                 echo "building version ${NEW_VERSION}"
-                echo 'mvn install'
 			}
 		}
 		
 		stage('test') {
             when {
                 expression {
-                    BRANCH_NAME == 'dev'
                     params.executeTests     //params.executeTets = params.executeTests == true
                 }
             }
@@ -48,7 +40,7 @@ pipeline {
 		stage('deploy') {
 			steps {
 				echo 'deploying the application...'
-                		echo "deploying version ${params.VERSION}"
+                echo "deploying version ${VERSION}"
 			}
 		}
 	}
