@@ -20,11 +20,11 @@ pipeline {
 	stages {
 		
 		stage('build') {
-//                         when {
-//                                 expression {
-//                                         BRANCH_NAME == 'dev' && CODE_CHANGES == true
-//                                 }
-//                         }
+                        when {
+                                expression {
+                                        BRANCH_NAME == 'dev' && CODE_CHANGES == true
+                                }
+                        }
 			steps {
 				echo 'building the application...'
 				echo 'built the application...'
@@ -52,9 +52,9 @@ pipeline {
 //                 withCredentials([
 //                     usernamePassword (credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
 //                 ]) 
-		{
-                    sh "some script ${USER} ${PWD}"
-                }
+// 		{
+//                     sh "some script ${USER} ${PWD}"
+//                 }
 		}	
 	}
 // 	post {
