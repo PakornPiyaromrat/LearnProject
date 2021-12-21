@@ -48,23 +48,10 @@ pipeline {
 		stage('deploy') {
 			steps {
 				echo 'deploying the application...'
-                echo "deploying version ${params.VERSION}"
-//                 withCredentials([
-//                     usernamePassword (credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
-//                 ]) 
-// 		{
-//                     sh "some script ${USER} ${PWD}"
-//                 }
-		}	
+                		echo "deploying version ${params.VERSION}"
+			}
+		}
 	}
-// 	post {
-//         always {
-//         }
-//         success {
-//         }
-//         failure {
-//         }
-// 	}
 }
 
 node {
