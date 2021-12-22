@@ -1,4 +1,5 @@
-CODE_CHANGES = getGitChanges()
+// CODE_CHANGES = getGitChanges()
+def groovy
 pipeline {
 	
 	agent any
@@ -18,38 +19,41 @@ pipeline {
 //         SERVER_CREDENTIALS = credentials('server-credentials')
 //     }
 	stages {
+
+        stage('init') {
+			steps {
+                script {
+                    groovy = load "script.groovy"
+                }
+			}
+		}
 		
 		stage('build') {
-//                         when {
-//                                 expression {
-//                                         BRANCH_NAME == 'dev' && CODE_CHANGES == true
-//                                 }
-//                         }
 			steps {
-				echo 'building the application...'
-				echo 'built the application...'
-//                 echo "building version ${NEW_VERSION}"
-                echo 'mvn install'
+				script {
+                    groovy.buildApp()
+                }
 			}
 		}
 		
 		stage('test') {
             when {
                 expression {
-                    BRANCH_NAME == 'dev'
                     params.executeTests     //params.executeTets = params.executeTests == true
                 }
             }
 			steps {
-				echo 'testing the application...'
+				script {
+                    groovy.testApp()
+                }
 			}
 		}
 		
 		stage('deploy') {
 			steps {
-				echo 'deploying the application...'
-                		echo "deploying version ${params.VERSION}"
-			}
+				script {
+                    groovy.deployApp()
+                }
 		}
 	}
 }
