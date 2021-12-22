@@ -54,8 +54,9 @@ pipeline {
 				script {
                     groovy.deployApp()
                 }
-		}
-	}
+		    }
+	    }
+    }
 }
 
 node {
